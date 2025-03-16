@@ -1,0 +1,6 @@
+Please determine how to handle the below email thread:
+
+From: {author}
+To: {to}
+Subject: {subject}
+{email_thread}
