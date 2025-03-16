@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "template-python"
+name = "email-agent"
 version = "0.1.0"
 description = ""
 authors = ["Alejandro Uribe"]
@@ -8,6 +8,15 @@ packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.13"
+langchain = "^0.3.20"
+langchain-openai = "^0.3.8"
+langchain-anthropic = "^0.3.10"
+langgraph = "^0.3.11"
+langmem = "^0.0.15"
+python-dotenv = "^1.0.1"
+pillow = "^11.1.0"
+pyppeteer = "^2.0.0"
+nest-asyncio = "^1.6.0"
 
 
 [tool.poetry.group.lint.dependencies]

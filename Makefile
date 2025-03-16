@@ -15,3 +15,15 @@ install:		## Install dependencies
 	poetry install
 	@echo "Installing pre-commit hooks"
 	pre-commit install
+
+.PHONY: update
+update:		## Update dependencies
+	@echo "Updating dependencies"
+	poetry update
+	@echo "Updating pre-commit hooks"
+	pre-commit autoupdate
+
+.PHONY: test
+test:			## Run the tests
+	@echo "Running the tests"
+	poetry run pytest
