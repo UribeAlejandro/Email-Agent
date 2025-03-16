@@ -3,9 +3,9 @@ from src.utils.env import load_env
 
 load_env()
 
+
 def main() -> None:
     """Main function of the program."""
-
     # Run the agent
     email_input = {
         "author": "Alice Smith <alice.smith@company.com>",
@@ -13,7 +13,8 @@ def main() -> None:
         "subject": "Quick question about API documentation",
         "email_thread": """Hi John,
 
-    I was reviewing the API documentation for the new authentication service and noticed a few endpoints seem to be missing from the specs. Could you help clarify if this was intentional or if we should update the docs?
+    I was reviewing the API documentation for the new authentication service and noticed a few endpoints\n
+    seem to be missing from the specs. Could you help clarify if this was intentional or if we should update the docs?
 
     Specifically, I'm looking at:
     - /auth/refresh

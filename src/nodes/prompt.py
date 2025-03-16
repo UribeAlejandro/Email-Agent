@@ -5,22 +5,20 @@ from src.models.state import State
 def create_prompt(state: State) -> list[dict]:
     """
     Create the prompt for the agent.
-    Parameters:
-    -----------
+
+    Parameters
+    ----------
     state: State
         The current state of the agent.
 
-    Returns:
-    --------
+    Returns
+    -------
     list[dict]:
         The prompt for the agent.
     """
     return [
         {
             "role": "system",
-            "content": agent_system_prompt.format(
-                instructions=prompt_instructions["agent_instructions"],
-                **profile
-                )
+            "content": agent_system_prompt.format(instructions=prompt_instructions["agent_instructions"], **profile),
         }
-    ] + state['messages']
+    ] + state["messages"]

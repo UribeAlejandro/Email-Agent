@@ -1,7 +1,8 @@
+from typing import Literal
+
+from langchain.chat_models import init_chat_model
 from langgraph.graph import END
 from langgraph.types import Command
-from typing import Literal
-from langchain.chat_models import init_chat_model
 
 from src.constants import profile, prompt_instructions, triage_system_prompt, triage_user_prompt
 from src.models.router import Router
@@ -11,21 +12,21 @@ from src.models.state import State
 def triage_router(state: State) -> Command[Literal["response_agent", "__end__"]]:
     """
     Triage the email and determine its classification.
-    Parameters:
-    -----------
+
+    Parameters
+    ----------
     state: State
         The current state of the agent.
 
-    Returns:
-    --------
+    Returns
+    -------
     Command[Literal["response_agent", "__end__"]]:
         The command to execute based on the classification.
     """
-
-    author = state['email_input']['author']
-    to = state['email_input']['to']
-    subject = state['email_input']['subject']
-    email_thread = state['email_input']['email_thread']
+    author = state["email_input"]["author"]  # type: ignore
+    to = state["email_input"]["to"]  # type: ignore
+    subject = state["email_input"]["subject"]  # type: ignore
+    email_thread = state["email_input"]["email_thread"]  # type: ignore
 
     llm = init_chat_model("openai:gpt-4o-mini")
     llm_router = llm.with_structured_output(Router)
@@ -37,14 +38,9 @@ def triage_router(state: State) -> Command[Literal["response_agent", "__end__"]]
         triage_no=prompt_instructions["triage_rules"]["ignore"],
         triage_notify=prompt_instructions["triage_rules"]["notify"],
         triage_email=prompt_instructions["triage_rules"]["respond"],
-        examples=None
+        examples=None,
     )
-    user_prompt = triage_user_prompt.format(
-        author=author,
-        to=to,
-        subject=subject,
-        email_thread=email_thread
-    )
+    user_prompt = triage_user_prompt.format(author=author, to=to, subject=subject, email_thread=email_thread)
     result = llm_router.invoke(
         [
             {"role": "system", "content": system_prompt},

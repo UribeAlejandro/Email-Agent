@@ -1,12 +1,12 @@
 import json
 
-with open("conf/prompts/agent_system_prompt.txt", "r") as f:
+with open("conf/prompts/agent_system_prompt.txt") as f:
     agent_system_prompt = f.read()
 
-with open("conf/prompts/triage_system_prompt.txt", "r") as f:
+with open("conf/prompts/triage_system_prompt.txt") as f:
     triage_system_prompt = f.read()
 
-with open("conf/prompts/triage_user_prompt.txt", "r") as f:
+with open("conf/prompts/triage_user_prompt.txt") as f:
     triage_user_prompt = f.read()
 
 profile = json.load(open("conf/profile.json"))
